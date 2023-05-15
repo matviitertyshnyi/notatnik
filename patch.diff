@@ -1,0 +1,126 @@
+From db4fe0be1c7ce74036a3a2e04e38a4c3b5aa8708 Mon Sep 17 00:00:00 2001
+From: Gdempc <grzegorz.dempc@gmail.com>
+Date: Mon, 15 May 2023 12:09:03 +0200
+Subject: [PATCH] design
+
+---
+ App.tsx    | 25 ++++++++++++++++---------
+ newNote.js | 17 +++++++++++++++++
+ styles.ts  | 35 ++++++++++++++++++++++++++++++++---
+ 3 files changed, 65 insertions(+), 12 deletions(-)
+ create mode 100644 newNote.js
+
+diff --git a/App.tsx b/App.tsx
+index 1ac45b5..c3b3347 100644
+--- a/App.tsx
++++ b/App.tsx
+@@ -1,17 +1,24 @@
+ import React from 'react';
+-import {Text, View} from 'react-native';
++import {Text, View,  StyleSheet, TouchableOpacity} from 'react-native';
++import { useStyles } from './styles';
++import Note from './newNote';
++const styles = useStyles(); 
+ 
+ const YourApp = () => {
+   return (
+-    <View
+-      style={{
+-        flex: 1,
+-        justifyContent: 'center',
+-        alignItems: 'center',
+-      }}>
+-      <Text>Try editing me! 🎉</Text>
++    
++    <View style={styles.container}>
++      <Text style={styles.header}>My notes:</Text>
++        <Note/>
++        <Note/>
++        <Note/>
++        <Note/>
++        <Note/>
++        <Note/>
+     </View>
+-  );
++    );
+ };
+ 
++
++
+ export default YourApp;
+\ No newline at end of file
+diff --git a/newNote.js b/newNote.js
+new file mode 100644
+index 0000000..e920ace
+--- /dev/null
++++ b/newNote.js
+@@ -0,0 +1,17 @@
++import React from 'react';
++import {Text, View,  StyleSheet, TouchableOpacity} from 'react-native';
++import { useStyles } from './styles';
++const styles = useStyles(); 
++
++const Note = () => {
++
++
++  return(
++  <TouchableOpacity style={styles.note}>
++    <Text style={styles.noteText}>AAA</Text>
++  </TouchableOpacity>
++)
++}
++
++
++export default Note;
+\ No newline at end of file
+diff --git a/styles.ts b/styles.ts
+index c352a30..5dcf804 100644
+--- a/styles.ts
++++ b/styles.ts
+@@ -1,10 +1,39 @@
+-
+ import { StyleSheet } from 'react-native';
+ 
+ export const useStyles = () => {
+     
+     const styles = StyleSheet.create({
+-       
+-    });
++       container: {
++        backgroundColor:"#e6e6ec",
++        height: "100%",
++        width: "100%",
++       },
++       header: {
++        backgroundColor:"#e6e6ec",
++        padding: "3%",
++        fontSize: 25,
++        color: 'black',
++        fontWeight: 'bold',
++       },
++       note: {
++       width: "95%",
++       height: "15%",
++       marginLeft: "auto",
++       marginRight: "auto",
++       backgroundColor:"#FFF",
++       padding: "3%",
++       marginTop: "2%",
++       borderRadius: 10,
++       borderStyle: 'solid',
++       borderColor: "#000000",
++       borderWidth: 0,
++      },
++      noteText:{
++        fontSize: 25,
++        fontFamily: 'lucida grande, tahoma, verdana, arial, sans-serif',
++        color: "black",
++      }
++      
++   });
+     return styles;
+ }
+\ No newline at end of file
+-- 
+2.36.0.windows.1
+
