@@ -1,14 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
+import { useStyles } from './styles';
+
+const styles = useStyles(); 
 
 const YourApp = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+    <View style={styles.container}>
       <Text>Try editing me! 🎉</Text>
     </View>
   );
