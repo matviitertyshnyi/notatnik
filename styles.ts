@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native';
 export const useStyles = () => {
     
     const styles = StyleSheet.create({
+<<<<<<< HEAD
        container: {
         backgroundColor:"#e6e6ec",
         height: "100%",
@@ -35,5 +36,11 @@ export const useStyles = () => {
       }
       
    });
+=======
+       container:{
+        backgroundColor:"#33ffaa"
+       },
+    });
+>>>>>>> 758433c816151496da6a52d6e1952acbdf370628
     return styles;
 }
