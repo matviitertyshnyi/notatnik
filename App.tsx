@@ -1,11 +1,15 @@
-import React from 'react';
-import {Text, View, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import * as React from 'react';
+import {Text, TextInput, View, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import { useStyles } from './styles';
 import Note from './Note';
 import { AddNote } from './assets';
 import { useState } from 'react'; 
 import NotesList from './notesList';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const styles = useStyles(); 
+
+const Stack = createNativeStackNavigator();
 
 const YourApp = () => {
   const [serviceList, setServiceList] = useState([{service: ''}])
@@ -22,7 +26,7 @@ const YourApp = () => {
 
 ]);
 
-
+const HomeScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text style={styles.header}>My notes:</Text>
@@ -34,14 +38,38 @@ const YourApp = () => {
           <SafeAreaView>
             <ScrollView style={styles.scrollView}>
               {serviceList.map(() =>(
-                <NotesList notes={notes}/>
+                <TouchableOpacity style={styles.note} onPress={() => navigation.navigate('Note', {name: 'Jane'})}>
+                <Text style={styles.noteText}></Text>
+              </TouchableOpacity>
               ))}
             </ScrollView>
           </SafeAreaView>
     </View>
+  );
+};
+
+
+const NoteScreen = ({navigation, route}) => {
+  return <TextInput multiline={true}></TextInput>;
+};
+
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+        />
+        <Stack.Screen name="Note" component={NoteScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
     );
 };
 
 
 
 export default YourApp;
+
+
+
