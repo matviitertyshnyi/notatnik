@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, TextInput, View, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import {Text, TextInput, View, SafeAreaView, ScrollView, TouchableOpacity, Button} from 'react-native';
 import { useStyles } from './styles';
 import Note from './Note';
 import { AddNote } from './assets';
@@ -10,12 +10,21 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const styles = useStyles(); 
 
 const Stack = createNativeStackNavigator();
+ 
+function YourApp(){
+  const [serviceList, setServiceList] = useState([{service: ''}]);
 
-const YourApp = () => {
-  const [serviceList, setServiceList] = useState([{service: ''}])
+  const [val, setVal] = useState("")
+
+  const change = event => { 
+      setVal(val+event.target.value);
+  }
+  const click = () => {
+    alert(val)
+  }
   
   const handleServiceAdd = () => {
-    setServiceList([...serviceList, {service: ''}])
+    setServiceList([...serviceList, {service: ''}]);
   }
 
   const [notes, setNotes] = useState([
@@ -24,7 +33,7 @@ const YourApp = () => {
     date: "15/04/2021"
   },
 
-]);
+])
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -39,7 +48,7 @@ const HomeScreen = ({navigation}) => {
             <ScrollView style={styles.scrollView}>
               {serviceList.map(() =>(
                 <TouchableOpacity style={styles.note} onPress={() => navigation.navigate('Note', {name: 'Jane'})}>
-                <Text style={styles.noteText}></Text>
+                <Text style={styles.noteText}>{val}</Text>
               </TouchableOpacity>
               ))}
             </ScrollView>
@@ -50,7 +59,12 @@ const HomeScreen = ({navigation}) => {
 
 
 const NoteScreen = ({navigation, route}) => {
-  return <TextInput multiline={true}></TextInput>;
+  return(
+    <View>
+     <TextInput multiline={true} onChange={change}>{val}</TextInput>
+     <TouchableOpacity onPress={click} style={styles.addnote}></TouchableOpacity> 
+     </View>
+  );
 };
 
 
