@@ -16,15 +16,7 @@ const YourApp = () => {
 
   const [notes, setNotes] = useState([
     {
-    text: "My first note",
-    date: "15/04/2021"
-  },
-  {
-    text: "My second note",
-    date: "15/04/2021"
-  },
-  {
-    text: "My third note",
+    text: "Title",
     date: "15/04/2021"
   },
 
