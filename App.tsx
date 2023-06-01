@@ -14,28 +14,10 @@ const Stack = createNativeStackNavigator();
 function YourApp(){
   const [serviceList, setServiceList] = useState([{service: ''}]);
 
-  let [val, setVal] = useState("Hey")
-
-  const change = event => {
-     let newVal = String(event.target.value)
-     val += newVal
-  }
-
-  const click = () => {
-    alert(val)
-  }
   
   const handleServiceAdd = () => {
     setServiceList([...serviceList, {service: ''}]);
   }
-  
-  const [notes, setNotes] = useState([
-    {
-    text: "Title",
-    date: "18/05/2023"
-  },
-
-])
 
 const HomeScreen = ({navigation}) => {
   return (
@@ -50,7 +32,7 @@ const HomeScreen = ({navigation}) => {
             <ScrollView style={styles.scrollView}>
               {serviceList.map(() =>(
                 <TouchableOpacity style={styles.note} onPress={() => navigation.navigate('Note', {name: 'Jane'})}>
-                <Text style={styles.noteText}>{val}</Text>
+                <Text style={styles.noteText}></Text>
               </TouchableOpacity>
               ))}
             </ScrollView>
@@ -61,15 +43,20 @@ const HomeScreen = ({navigation}) => {
 
 
 const NoteScreen = ({navigation, route}) => {
+
+  const [text, setText] = useState('');
+
+  const click = () => {
+    alert(text)
+  }
+
   return(
     <View>
-     <TextInput multiline={true} onChangeText={change} value={val}></TextInput>
+     <TextInput onChangeText={newText => setText(newText)} defaultValue={text}/>
      <TouchableOpacity onPress={click} style={styles.addnote}></TouchableOpacity> 
      </View>
   );
 };
-
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
