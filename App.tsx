@@ -14,11 +14,13 @@ const Stack = createNativeStackNavigator();
 function YourApp(){
   const [serviceList, setServiceList] = useState([{service: ''}]);
 
-  const [val, setVal] = useState("")
+  let [val, setVal] = useState("Hey")
 
-  const change = event => { 
-      setVal(val+event.target.value);
+  const change = event => {
+     let newVal = String(event.target.value)
+     val += newVal
   }
+
   const click = () => {
     alert(val)
   }
@@ -26,11 +28,11 @@ function YourApp(){
   const handleServiceAdd = () => {
     setServiceList([...serviceList, {service: ''}]);
   }
-
+  
   const [notes, setNotes] = useState([
     {
     text: "Title",
-    date: "15/04/2021"
+    date: "18/05/2023"
   },
 
 ])
@@ -61,7 +63,7 @@ const HomeScreen = ({navigation}) => {
 const NoteScreen = ({navigation, route}) => {
   return(
     <View>
-     <TextInput multiline={true} onChange={change}>{val}</TextInput>
+     <TextInput multiline={true} onChangeText={change} value={val}></TextInput>
      <TouchableOpacity onPress={click} style={styles.addnote}></TouchableOpacity> 
      </View>
   );
