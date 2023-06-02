@@ -17,8 +17,7 @@ function YourApp(){
   let [val, setVal] = useState("Hey")
 
   const change = event => {
-     let newVal = String(event.target.value)
-     val += newVal
+     setVal(event.target.value)
   }
 
   const click = () => {
