@@ -10,6 +10,7 @@ const styles = useStyles();
 
 const Stack = createNativeStackNavigator();
 
+<<<<<<< HEAD
 function YourApp() {
   const [serviceList, setServiceList] = useState([]);
 
@@ -44,6 +45,30 @@ function YourApp() {
   const handleServiceAdd = () => {
     setServiceList([...serviceList, { service: '' }]);
   };
+=======
+  let [val, setVal] = useState("Hey")
+
+  const change = event => {
+     let newVal = String(event.target.value)
+     val += newVal
+  }
+
+  const click = () => {
+    alert(val)
+  }
+  
+  const handleServiceAdd = () => {
+    setServiceList([...serviceList, {service: ''}]);
+  }
+  
+  const [notes, setNotes] = useState([
+    {
+    text: "Title",
+    date: "18/05/2023"
+  },
+
+])
+>>>>>>> 18795ec (Revert "text input work")
 
   const handleNoteDelete = (index) => {
     const updatedServiceList = [...serviceList];
@@ -56,6 +81,7 @@ function YourApp() {
       <View style={styles.container}>
         <Text style={styles.header}>My notes:</Text>
 
+<<<<<<< HEAD
         <TouchableOpacity style={styles.addnote} onPress={handleServiceAdd}>
           <AddNote width={100} height={100} fill={'#FFF'} />
         </TouchableOpacity>
@@ -75,6 +101,13 @@ function YourApp() {
                 >
                   <Text style={styles.deleteButtonText}>Delete</Text>
                 </TouchableOpacity>
+=======
+          <SafeAreaView>
+            <ScrollView style={styles.scrollView}>
+              {serviceList.map(() =>(
+                <TouchableOpacity style={styles.note} onPress={() => navigation.navigate('Note', {name: 'Jane'})}>
+                <Text style={styles.noteText}>{val}</Text>
+>>>>>>> 18795ec (Revert "text input work")
               </TouchableOpacity>
             ))}
           </ScrollView>
@@ -86,6 +119,7 @@ function YourApp() {
   const NoteScreen = ({ navigation, route }) => {
     const [text, setText] = useState('');
 
+<<<<<<< HEAD
     const saveNote = () => {
       const { index } = route.params;
       const updatedServiceList = [...serviceList];
@@ -109,6 +143,17 @@ function YourApp() {
       </View>
     );
   };
+=======
+const NoteScreen = ({navigation, route}) => {
+  return(
+    <View>
+     <TextInput multiline={true} onChangeText={change} value={val}></TextInput>
+     <TouchableOpacity onPress={click} style={styles.addnote}></TouchableOpacity> 
+     </View>
+  );
+};
+
+>>>>>>> 18795ec (Revert "text input work")
 
   return (
     <NavigationContainer>
